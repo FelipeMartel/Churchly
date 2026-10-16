@@ -1,46 +1,42 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { NativeTabs } from 'expo-router/unstable-native-tabs';
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
 import { useLanguage } from '@/src/i18n/LanguageContext';
+import { useTheme } from '@/src/theme';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme() === 'dark' ? 'dark' : 'light';
   const { t } = useLanguage();
+  const { colors } = useTheme();
 
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-        headerShown: false,
-        // expo-router vendors its own BottomTabBarButtonProps, structurally
-        // incompatible with @react-navigation/bottom-tabs' version used by HapticTab.
-        tabBarButton: HapticTab as never,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: t.tabHome,
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="settings"
-        options={{
-          title: t.tabSettings,
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="gearshape.fill" color={color} />,
-        }}
-      />
-    </Tabs>
+    <NativeTabs
+      tintColor={colors.gold}
+      backgroundColor={colors.surface}
+      labelStyle={{ selected: { color: colors.text } }}>
+      <NativeTabs.Trigger name="index">
+        <NativeTabs.Trigger.Icon
+          sf={{ default: 'location', selected: 'location.fill' }}
+          md="near_me"
+        />
+        <NativeTabs.Trigger.Label>{t.tabNear}</NativeTabs.Trigger.Label>
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="map">
+        <NativeTabs.Trigger.Icon sf={{ default: 'map', selected: 'map.fill' }} md="map" />
+        <NativeTabs.Trigger.Label>{t.tabMap}</NativeTabs.Trigger.Label>
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="saved">
+        <NativeTabs.Trigger.Icon
+          sf={{ default: 'bookmark', selected: 'bookmark.fill' }}
+          md="bookmark"
+        />
+        <NativeTabs.Trigger.Label>{t.tabSaved}</NativeTabs.Trigger.Label>
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="settings">
+        <NativeTabs.Trigger.Icon
+          sf={{ default: 'gearshape', selected: 'gearshape.fill' }}
+          md="settings"
+        />
+        <NativeTabs.Trigger.Label>{t.tabSettings}</NativeTabs.Trigger.Label>
+      </NativeTabs.Trigger>
+    </NativeTabs>
   );
 }

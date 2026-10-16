@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "churchly",
+    "name": "Churchly",
     "slug": "churchly",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -12,7 +12,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#0A1730",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
@@ -29,11 +29,11 @@
         "expo-splash-screen",
         {
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
+          "imageWidth": 180,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff",
+          "backgroundColor": "#0A1730",
           "dark": {
-            "backgroundColor": "#000000"
+            "backgroundColor": "#0A1730"
           }
         }
       ],
@@ -45,9 +45,10 @@
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "Churchly usa tu ubicación para mostrarte las iglesias más cercanas en el mapa."
+          "locationWhenInUsePermission": "Churchly usa tu ubicación para enseñarte las iglesias más cercanas y ordenarlas por distancia."
         }
-      ]
+      ],
+      "expo-sharing"
     ],
     "experiments": {
       "typedRoutes": true,

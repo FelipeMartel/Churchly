@@ -42,3 +42,6 @@ app-example
 # generated native folders
 /ios
 /android
+
+# Caché de descargas de los scripts
+scripts/.cache/
